@@ -1,3 +1,4 @@
+import os
 import qrcode
 import base64
 
@@ -12,6 +13,12 @@ def file_to_qr(file_path, qr_code_prefix):
 
     # Calculate the number of chunks
     num_chunks = (len(base64_data) + chunk_size - 1) // chunk_size
+
+    # Create the output folder based on the file name
+    file_name = os.path.splitext(os.path.basename(file_path))[0]
+    output_folder = f'{file_name}_output'
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
 
     for i in range(num_chunks):
         # Get a chunk of data
@@ -28,8 +35,8 @@ def file_to_qr(file_path, qr_code_prefix):
         qr.add_data(chunk)
         qr.make(fit=True)
 
-        # Save the QR code with a unique filename
-        qr_code_path = f'{qr_code_prefix}_{i+1}.png'
+        # Save the QR code in the output folder with a unique filename
+        qr_code_path = os.path.join(output_folder, f'{qr_code_prefix}_{i+1}.png')
         img = qr.make_image(fill_color="black", back_color="white")
         img.save(qr_code_path)
 
