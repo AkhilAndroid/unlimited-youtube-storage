@@ -1,6 +1,7 @@
 import os
 import qrcode
 import base64
+from tqdm import tqdm
 
 def file_to_qr(file_path, qr_code_prefix):
     chunk_size = 500  # Set your desired chunk size
@@ -20,7 +21,7 @@ def file_to_qr(file_path, qr_code_prefix):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    for i in range(num_chunks):
+    for i in tqdm(range(num_chunks), desc='Creating QR codes', unit='chunk'):
         # Get a chunk of data
         start = i * chunk_size
         end = (i + 1) * chunk_size
@@ -40,7 +41,7 @@ def file_to_qr(file_path, qr_code_prefix):
         img = qr.make_image(fill_color="black", back_color="white")
         img.save(qr_code_path)
 
-# Example usage
+
 file_path = 'test.png'
 qr_code_prefix = 'example_qr'
 file_to_qr(file_path, qr_code_prefix)
