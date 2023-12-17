@@ -35,9 +35,20 @@ def decode_and_combine(qr_code_folder, num_images):
         print("Error: Combined image is empty.")
         return None
 
+def count_png_images(folder_path):
+    # Get all files in the folder
+    all_files = os.listdir(folder_path)
+
+    # Filter out only PNG files
+    png_files = [file for file in all_files if file.lower().endswith('.png')]
+
+    # Return the count of PNG files
+    return len(png_files)
+
+
 # Replace this with the actual path to your folder and the total number of images
 qr_code_folder = 'test1_output'
-num_images = 41
+num_images = count_png_images(qr_code_folder)
 output_file_path = decode_and_combine(qr_code_folder, num_images)
 
 if output_file_path:
