@@ -24,6 +24,21 @@ def file_to_qr(file_path, qr_code_prefix):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
+    # Create a QR code for the file type
+    file_type = os.path.splitext(file_path)[1][1:]  # Extract file extension without the dot
+    file_type_qr = qrcode.QRCode(
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    file_type_qr.add_data(file_type)
+    file_type_qr.make(fit=True)
+
+    # Save the file type QR code with a specific filename
+    file_type_qr_path = os.path.join(output_folder, f'{qr_code_prefix}_file_type.png')
+    file_type_img = file_type_qr.make_image(fill_color="black", back_color="white")
+    file_type_img.save(file_type_qr_path)
+
     for i in tqdm(range(num_chunks), desc='Creating QR codes', unit='chunk'):
         # Get a chunk of data
         start = i * chunk_size
@@ -40,11 +55,11 @@ def file_to_qr(file_path, qr_code_prefix):
         qr.make(fit=True)
 
         # Save the QR code in the output folder with a unique filename
-        qr_code_path = os.path.join(output_folder, f'{qr_code_prefix}_{i+1}.png')
+        qr_code_path = os.path.join(output_folder, f'{qr_code_prefix}_{i + 1}.png')
         img = qr.make_image(fill_color="black", back_color="white")
         img.save(qr_code_path)
 
 # Replace these with your actual folder paths and desired output filename
-file_path = 'test1.png'
+file_path = 'test.png'
 qr_code_prefix = 'example_qr'
 file_to_qr(file_path, qr_code_prefix)
