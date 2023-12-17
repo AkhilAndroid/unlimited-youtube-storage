@@ -5,7 +5,19 @@ import base64
 import numpy as np
 
 def decode_and_combine(qr_code_folder, num_images):
+
+    qr_file_path = os.path.join(qr_code_folder, 'example_qr_file_type.png')
+    img = cv2.imread(qr_file_path, cv2.IMREAD_GRAYSCALE)
+    decoded_objects = decode(img)
+
+    if decoded_objects:
+        decoded_data = decoded_objects[0].data.decode('utf-8')
+        file_type = decoded_data
+    else:
+        print("File type is corrupted")
+
     decoded_data = ""
+    num_images = num_images - 1
 
     for i in range(1, num_images + 1):
         # Load the QR code image
@@ -28,7 +40,7 @@ def decode_and_combine(qr_code_folder, num_images):
 
     if combined_image is not None:
         # Save the combined image
-        output_file_path = 'combined_output.png'
+        output_file_path = f'combined_output.{file_type}'
         cv2.imwrite(output_file_path, combined_image)
         return output_file_path
     else:
@@ -47,8 +59,8 @@ def count_png_images(folder_path):
 
 
 # Replace this with the actual path to your folder and the total number of images
-qr_code_folder = 'test1_output'
-num_images = count_png_images(qr_code_folder)
+qr_code_folder = 'test_output'
+num_images = (count_png_images(qr_code_folder))
 output_file_path = decode_and_combine(qr_code_folder, num_images)
 
 if output_file_path:
