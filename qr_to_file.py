@@ -1,3 +1,4 @@
+import shutil
 import cv2
 from pyzbar.pyzbar import decode
 import os
@@ -75,3 +76,5 @@ def init():
         print(f"Combined image saved to: {output_file_path}")
     else:
         print("Failed to save the combined image.")
+
+    shutil.rmtree(qr_code_folder)

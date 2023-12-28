@@ -1,7 +1,9 @@
+import shutil
 import cv2
 import os
 import re
 from tqdm import tqdm
+
 
 def images_to_video(input_folder, output_file, fps, frame_size, frame_interval):
     images = [img for img in os.listdir(input_folder) if img.endswith(".png")]
@@ -34,4 +36,6 @@ def init(input):
 
     images_to_video(input_folder, output_file, fps, frame_size, frame_interval)
     print("Video created successfully.")
+
+    shutil.rmtree(input_folder)
     
