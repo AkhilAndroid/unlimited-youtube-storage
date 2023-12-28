@@ -1,6 +1,7 @@
 import cv2
 import os
 import re
+from tqdm import tqdm
 
 def images_to_video(input_folder, output_file, fps, frame_size, frame_interval):
     images = [img for img in os.listdir(input_folder) if img.endswith(".png")]
@@ -13,7 +14,7 @@ def images_to_video(input_folder, output_file, fps, frame_size, frame_interval):
 
     video = cv2.VideoWriter(output_file, cv2.VideoWriter_fourcc(*"mp4v"), fps, frame_size)
 
-    for img_name in images:
+    for img_name in tqdm(images, desc="Creating Video"):
         img_path = os.path.join(input_folder, img_name)
         frame = cv2.imread(img_path)
         frame = cv2.resize(frame, frame_size)
@@ -23,7 +24,6 @@ def images_to_video(input_folder, output_file, fps, frame_size, frame_interval):
 
     cv2.destroyAllWindows()
     video.release()
-
 
 input_folder = "test1_output"
 output_file = "output_video.mp4"
