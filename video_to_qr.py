@@ -18,7 +18,7 @@ class VideoToImagesConverter:
             ret, img = cap.read()
             if ret:
                 img = cv2.resize(img, frame_size)
-                cv2.imwrite(join(save_dir, 'image%d.jpg' % output_index), img)
+                cv2.imwrite(join(save_dir, 'image%d.png' % output_index), img)
                 output_index += 1
         cap.release()
 

@@ -25,7 +25,7 @@ def images_to_video(input_folder, output_file, fps, frame_size, frame_interval):
     video.release()
 
 
-input_folder = "test_output"
+input_folder = "test1_output"
 output_file = "output_video.mp4"
 fps = 25
 frame_size = (640, 480)

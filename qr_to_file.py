@@ -4,48 +4,64 @@ import os
 import base64
 import numpy as np
 
-def decode_and_combine(qr_code_folder, num_images):
+import cv2
+from pyzbar.pyzbar import decode
+import os
+import base64
+import numpy as np
 
+
+def decode_and_combine(qr_code_folder, num_images):
     qr_file_path = os.path.join(qr_code_folder, 'image0.png')
+
+    # Check if the file exists
+    if not os.path.isfile(qr_file_path):
+        print(f"Error: File not found - {qr_file_path}")
+        return None
+
     img = cv2.imread(qr_file_path, cv2.IMREAD_GRAYSCALE)
     decoded_objects = decode(img)
 
-    if decoded_objects:
-        decoded_data = decoded_objects[0].data.decode('utf-8')
-        file_type = decoded_data
-    else:
-        print("File type is corrupted")
+    if not decoded_objects:
+        print("Error: QR code decoding failed.")
+        return None
+
+    decoded_data = decoded_objects[0].data.decode('utf-8')
+    file_type = decoded_data
 
     decoded_data = ""
-    num_images = num_images - 1
 
-    for i in range(1, num_images + 1):
-        # Load the QR code image
-        qr_code_path = os.path.join(qr_code_folder, f'example_qr_{i}.png')
-        img = cv2.imread(qr_code_path, cv2.IMREAD_GRAYSCALE)  # Read the image in grayscale
+    for i in range(1, num_images):
+        qr_code_path = os.path.join(qr_code_folder, f'image{i}.png')
 
-        # Decode the QR code
+        if not os.path.isfile(qr_code_path):
+            print(f"Error: File not found - {qr_code_path}")
+            return None
+
+        img = cv2.imread(qr_code_path, cv2.IMREAD_GRAYSCALE)
+
         decoded_objects = decode(img)
-        if decoded_objects:
-            decoded_data += decoded_objects[0].data.decode('utf-8')
 
-    # Decode base64 data
+        if not decoded_objects:
+            print(f"Error: QR code decoding failed for {qr_code_path}.")
+            return None
+
+        decoded_data += decoded_objects[0].data.decode('utf-8')
+
     binary_data = base64.b64decode(decoded_data)
-
-    # Convert binary data to a numpy array
     binary_array = np.frombuffer(binary_data, dtype=np.uint8)
-
-    # Decode the numpy array as an image
     combined_image = cv2.imdecode(binary_array, cv2.IMREAD_UNCHANGED)
 
     if combined_image is not None:
-        # Save the combined image
         output_file_path = f'combined_output.{file_type}'
         cv2.imwrite(output_file_path, combined_image)
         return output_file_path
     else:
         print("Error: Combined image is empty.")
         return None
+
+
+
 
 def count_png_images(folder_path):
     # Get all files in the folder

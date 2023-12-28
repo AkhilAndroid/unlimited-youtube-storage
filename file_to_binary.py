@@ -60,6 +60,6 @@ def file_to_qr(file_path, qr_code_prefix):
         img.save(qr_code_path)
 
 # Replace these with your actual folder paths and desired output filename
-file_path = 'test.png'
-qr_code_prefix = 'example_qr'
+file_path = 'test1.jpg'
+qr_code_prefix = 'image'
 file_to_qr(file_path, qr_code_prefix)
