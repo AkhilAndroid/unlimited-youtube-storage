@@ -73,13 +73,12 @@ def count_png_images(folder_path):
     # Return the count of PNG files
     return len(png_files)
 
+def init():
+    qr_code_folder = 'extracted_images'
+    num_images = (count_png_images(qr_code_folder))
+    output_file_path = decode_and_combine(qr_code_folder, num_images)
 
-# Replace this with the actual path to your folder and the total number of images
-qr_code_folder = 'extracted_images'
-num_images = (count_png_images(qr_code_folder))
-output_file_path = decode_and_combine(qr_code_folder, num_images)
-
-if output_file_path:
-    print(f"Combined image saved to: {output_file_path}")
-else:
-    print("Failed to save the combined image.")
+    if output_file_path:
+        print(f"Combined image saved to: {output_file_path}")
+    else:
+        print("Failed to save the combined image.")

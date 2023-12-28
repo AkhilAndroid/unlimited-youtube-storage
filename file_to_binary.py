@@ -2,6 +2,7 @@ import os
 import qrcode
 import base64
 from tqdm import tqdm
+from qr_to_video import init
 
 def file_to_qr(file_path, qr_code_prefix):
     chunk_size = 500  # Set your desired chunk size
@@ -60,6 +61,11 @@ def file_to_qr(file_path, qr_code_prefix):
         img.save(qr_code_path)
 
 # Replace these with your actual folder paths and desired output filename
-file_path = 'test1.jpg'
-qr_code_prefix = 'image'
-file_to_qr(file_path, qr_code_prefix)
+def start(filename):
+    file_path = filename
+    file_name = os.path.splitext(file_path)[0]
+    folder = f'{file_name}_output'
+    qr_code_prefix = 'image'
+    file_to_qr(file_path, qr_code_prefix)
+    input_folder = folder
+    init(input_folder)

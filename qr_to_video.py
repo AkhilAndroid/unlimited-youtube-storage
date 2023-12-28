@@ -25,10 +25,13 @@ def images_to_video(input_folder, output_file, fps, frame_size, frame_interval):
     cv2.destroyAllWindows()
     video.release()
 
-input_folder = "test1_output"
-output_file = "output_video.mp4"
-fps = 25
-frame_size = (640, 480)
-frame_interval = 5
+def init(input):
+    input_folder = input
+    output_file = "output_video.mp4"
+    fps = 25
+    frame_size = (640, 480)
+    frame_interval = 5
 
-images_to_video(input_folder, output_file, fps, frame_size, frame_interval)
+    images_to_video(input_folder, output_file, fps, frame_size, frame_interval)
+    print("Video created successfully.")
+    

@@ -2,9 +2,10 @@ import cv2
 from os import mkdir
 from os.path import join, isdir
 from tqdm import tqdm
+from qr_to_file import init
 
 class VideoToImagesConverter:
-    def img_from_video(self, video_name, save_dir, frame_interval):
+    def img_from_video(self, video_name, save_dir, frame_interval, frame_size):
         cap = cv2.VideoCapture(video_name)
         if not isdir(save_dir):
             mkdir(save_dir)
@@ -22,12 +23,15 @@ class VideoToImagesConverter:
                 output_index += 1
         cap.release()
 
-# Define parameters
-video_name = "output_video.mp4"
-save_dir = "extracted_images"
-frame_size = (640, 480)
-frame_interval = 5
 
-# Create an instance of the class and run the conversion
-converter = VideoToImagesConverter()
-converter.img_from_video(video_name, save_dir, frame_interval)
+def videostart(name):
+    video_name = name
+    save_dir = "extracted_images"
+    frame_size = (640, 480)
+    frame_interval = 5
+
+    # Create an instance of the class and run the conversion
+    converter = VideoToImagesConverter()
+    converter.img_from_video(video_name, save_dir, frame_interval, frame_size)
+    init()
+
