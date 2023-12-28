@@ -3,12 +3,7 @@ from pyzbar.pyzbar import decode
 import os
 import base64
 import numpy as np
-
-import cv2
-from pyzbar.pyzbar import decode
-import os
-import base64
-import numpy as np
+from tqdm import tqdm
 
 
 def decode_and_combine(qr_code_folder, num_images):
@@ -31,7 +26,7 @@ def decode_and_combine(qr_code_folder, num_images):
 
     decoded_data = ""
 
-    for i in range(1, num_images):
+    for i in tqdm(range(1, num_images), desc="Decoding QR codes"):
         qr_code_path = os.path.join(qr_code_folder, f'image{i}.png')
 
         if not os.path.isfile(qr_code_path):
@@ -59,8 +54,6 @@ def decode_and_combine(qr_code_folder, num_images):
     else:
         print("Error: Combined image is empty.")
         return None
-
-
 
 
 def count_png_images(folder_path):
