@@ -6,7 +6,7 @@ import numpy as np
 
 def decode_and_combine(qr_code_folder, num_images):
 
-    qr_file_path = os.path.join(qr_code_folder, 'example_qr_file_type.png')
+    qr_file_path = os.path.join(qr_code_folder, 'image0.png')
     img = cv2.imread(qr_file_path, cv2.IMREAD_GRAYSCALE)
     decoded_objects = decode(img)
 
@@ -59,7 +59,7 @@ def count_png_images(folder_path):
 
 
 # Replace this with the actual path to your folder and the total number of images
-qr_code_folder = 'test_output'
+qr_code_folder = 'extracted_images'
 num_images = (count_png_images(qr_code_folder))
 output_file_path = decode_and_combine(qr_code_folder, num_images)
 

@@ -2,3 +2,4 @@ venv/
 .idea/
 test_output/
 test.py
+extracted_images/
