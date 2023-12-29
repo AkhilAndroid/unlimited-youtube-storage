@@ -1,7 +1,8 @@
 # UNLIMITED YOUTUBE STORAGE
 
 This project is a video-to-QR-code converter that allows users to encode video files into QR codes. The generated QR codes can be shared on platforms like YouTube or any other medium, and users can then decode the QR codes to retrieve the original video.
-###Features
+
+### Features
 
 - **File Encoding:** Convert files of diverse formats into QR codes.
 -    **Extension Preservation**: Remember the original file extension to ensure seamless decoding.
