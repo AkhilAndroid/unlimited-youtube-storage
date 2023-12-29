@@ -51,7 +51,7 @@ Create a Python Virtual Environment:
 Now install the dependencies
 
 ```bash
-  pip install -r requirement.txt
+  pip install -r requirements.txt
 ```
 Run the Application:
 ```bash
