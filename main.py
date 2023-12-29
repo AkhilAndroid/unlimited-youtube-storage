@@ -14,8 +14,8 @@ def main():
 
     while True:
         print("\nChoose an option:")
-        print("1. Convert file to binary")
-        print("2. Convert video to QR code")
+        print("1. Convert file to video")
+        print("2. Convert video to file")
         print("3. Exit")
 
         choice = input("Enter the corresponding number: ")
