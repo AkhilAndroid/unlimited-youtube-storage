@@ -54,11 +54,18 @@ Now install the dependencies
   pip install -r requirements.txt
 ```
 Run the Application:
+  
 ```bash
 python main.py
 ```
+### Todo
+
+- [x] **Extension Preservation**: Remember the original file extension to ensure seamless decoding.
+- [ ] **Batch Processing:** Enable users to encode multiple files into QR codes simultaneously.
+- [ ] **Encryption:** Implement optional encryption for sensitive files to enhance security during sharing.
+- [ ] **Web Interface:** Create a user-friendly web interface for easy file encoding and decoding.
+- [ ] **Customization Options:** Add options for users to customize QR code colors, error correction levels, etc.
+- [ ] **GPU Acceleration:** Implement support for GPU acceleration to enhance encoding and decoding performance.
 
 ### Contributing
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
-
-
