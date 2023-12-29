@@ -53,7 +53,7 @@ Now install the dependencies
 ```bash
   pip install -r requirement.txt
 ```
-To Run
+Run the Application:
 ```bash
 python main.py
 ```
