@@ -34,7 +34,7 @@ Create a Python Virtual Environment:
      python -m venv env
      ```
 
-4. Activate the Virtual Environment.
+ Activate the Virtual Environment.
 
    - On Windows.
 
