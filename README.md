@@ -9,7 +9,7 @@ This project is a video-to-QR-code converter that allows users to encode video f
 - **Compatibility**: Support for a broad range of file formats.
 - **Decoding**: Clear instructions for users on how to decode QR codes and retrieve the original file.
 
-###Installation
+### Installation
 
  Download or clone the repository
 ```bash
